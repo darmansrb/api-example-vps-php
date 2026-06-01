@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: samsat_api_apache
+    container_name: api-example
     restart: always
     environment:
       - TZ=Asia/Makassar
