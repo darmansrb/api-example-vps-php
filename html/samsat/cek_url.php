@@ -10,7 +10,8 @@ header('Access-Control-Allow-Methods: GET');
 // 2. Fungsi untuk mencatat log
 function writeLog($message)
 {
-  $logFile = dirname(__DIR__) . '/access.log';
+  // Menggunakan __DIR__ agar file access.log berada di dalam folder 'samsat'
+  $logFile = __DIR__ . '/access.log';
   $timestamp = date('Y-m-d H:i:s');
   $ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 
@@ -28,20 +29,29 @@ try {
     "saldo_reward" => 1
   ];
 
-  // Catat log sukses akses
-  writeLog("SUCCESS: Jetpack Compose melakukan pengecekan URL.");
+  // Encode array menjadi JSON string
+  $jsonResponse = json_encode($responseData);
+
+  // Catat log sukses akses beserta isi JSON response
+  writeLog("SUCCESS: Cek URL. Response: " . $jsonResponse);
 
   // Kirim response ke Android
   http_response_code(200);
-  echo json_encode($responseData);
+  echo $jsonResponse;
 
 } catch (Exception $e) {
-  // Catat log jika terjadi error
-  writeLog("ERROR: " . $e->getMessage());
-
-  http_response_code(500);
-  echo json_encode([
+  // Susun response error
+  $errorResponse = [
     "status" => false,
     "message" => "Internal Server Error"
-  ]);
+  ];
+
+  // Encode array error menjadi JSON string
+  $jsonError = json_encode($errorResponse);
+
+  // Catat log error dari Exception beserta isi JSON error yang dikirim
+  writeLog("ERROR: " . $e->getMessage() . " | Response: " . $jsonError);
+
+  http_response_code(500);
+  echo $jsonError;
 }
