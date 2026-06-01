@@ -10,7 +10,7 @@ header('Access-Control-Allow-Methods: GET');
 // 2. Fungsi untuk mencatat log
 function writeLog($message)
 {
-  $logFile = __DIR__ . '/access.log';
+  $logFile = dirname(__DIR__) . '/access.log';
   $timestamp = date('Y-m-d H:i:s');
   $ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
 
