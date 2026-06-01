@@ -24,7 +24,7 @@ function writeLog($message)
 try {
   // Data yang akan dikirim ke Jetpack Compose
   $responseData = [
-    "url_live" => "https://api-utama.samsat.go.id/v1/",
+    "url_live" => "https://bepungsekolahdev.dthrees.my.id/samsatproxy.php",
     "saldo_reward" => 1
   ];
 
