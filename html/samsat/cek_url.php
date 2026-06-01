@@ -25,7 +25,7 @@ try {
   // Data yang akan dikirim ke Jetpack Compose
   $responseData = [
     "url_live" => "https://api-utama.samsat.go.id/v1/",
-    "saldo_reward" => 10
+    "saldo_reward" => 1
   ];
 
   // Catat log sukses akses
