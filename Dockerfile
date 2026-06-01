@@ -1,8 +1,7 @@
 FROM php:8.2-apache
 
-# Set timezone di level OS Alpine
-RUN apk add --no-cache tzdata \
-    && cp /usr/share/zoneinfo/Asia/Makassar /etc/localtime \
+# Set timezone di level OS Debian (Debian sudah mendefinisikan symlink zoneinfo)
+RUN ln -sf /usr/share/zoneinfo/Asia/Makassar /etc/localtime \
     && echo "Asia/Makassar" > /etc/timezone
 
 # Atur konfigurasi PHP untuk menggunakan timezone Asia/Makassar
