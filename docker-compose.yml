@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  samsat-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: samsat_api_apache
+    restart: always
+    environment:
+      - TZ=Asia/Makassar
+    volumes:
+      # Memetakan folder lokal ./html ke dalam folder root Apache di container
+      - ./html:/var/www/html
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apiexample.entrypoints=web"
+      - "traefik.http.routers.apiexample.rule=Host(`apiexample.dthrees.my.id`)"
+      - "traefik.http.services.apiexample.loadbalancer.server.port=80"
+
+networks:
+  proxy:
+    external: true
