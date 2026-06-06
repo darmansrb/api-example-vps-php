@@ -25,7 +25,8 @@ function writeLog($message)
 try {
   // Data yang akan dikirim ke Jetpack Compose
   $responseData = [
-    "url_live" => "https://bepungsekolahdev.dthrees.my.id/samsatproxy.php",
+    "url_live" => "https://dash.bpad.nttprov.go.id",
+    // "url_live" => "https://bepungsekolahdev.dthrees.my.id/samsatproxy.php",
     "saldo_reward" => 1
   ];
 
